@@ -15,6 +15,10 @@ int SDL_main(int argc, char* argv[])
 	int X = 100;
 	int Y = 100;
 
+	SDL_Surface*  MyBG;
+	MyBG = SDL_LoadBMP("data/_Map.bmp");
+	SDL_Texture* MyBGTexture = SDL_CreateTextureFromSurface(MyRenderer, MyBG);
+
 	//Loading
 	SDL_Surface* MySurface[3];
 	SDL_Texture* MyTexture[3];
@@ -65,6 +69,8 @@ int SDL_main(int argc, char* argv[])
 		//Render
 		SDL_SetRenderDrawColor(MyRenderer, 0, 0, 0, 0);
 		SDL_RenderClear(MyRenderer);
+
+		SDL_RenderCopy(MyRenderer, MyBGTexture, nullptr, nullptr);
 
 		SDL_Rect MyRect = { X, Y, MySurface[Index]->w, MySurface[Index]->h};
 		//SDL_SetRenderDrawColor(MyRenderer, 207, 255, 229, 0);
